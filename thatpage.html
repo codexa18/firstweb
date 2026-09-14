@@ -1,0 +1,497 @@
+<!DOCTYPE html> <html lang="en"> <head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Registration Form</title>
+
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    body {
+
+        margin: 0;
+
+        font-family: Arial, sans-serif;
+
+        background: #eef2f7;
+
+        min-height: 100vh;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+    }
+
+
+    .container {
+
+        width: 850px;
+
+        max-width: 95%;
+
+        background: white;
+
+        padding: 25px 30px;
+
+        border-radius: 12px;
+
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+
+    }
+
+
+    h2 {
+
+        text-align: center;
+
+        color: #333;
+
+        margin: 0 0 22px 0;
+
+    }
+
+
+    /* TWO COLUMN FORM */
+
+    .form-layout {
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 16px 22px;
+
+    }
+
+
+    .form-group {
+
+        margin-bottom: 2px;
+
+    }
+
+
+    label {
+
+        display: block;
+
+        margin-bottom: 6px;
+
+        font-weight: bold;
+
+        color: #444;
+
+        font-size: 14px;
+
+    }
+
+
+    input,
+    select {
+
+        width: 100%;
+
+        height: 40px;
+
+        padding: 8px 10px;
+
+        border: 1px solid #ccc;
+
+        border-radius: 5px;
+
+        font-size: 14px;
+
+        outline: none;
+
+    }
+
+
+    input:focus,
+    select:focus {
+
+        border-color: #007bff;
+
+    }
+
+
+    input[type="file"] {
+
+        padding: 7px;
+
+    }
+
+
+    /* FULL WIDTH */
+
+    .full-width {
+
+        grid-column: 1 / 3;
+
+    }
+
+
+    /* IMAGE */
+
+    .image-section {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 15px;
+
+    }
+
+
+    .photo-preview {
+
+        width: 80px;
+
+        height: 80px;
+
+        border: 2px solid #007bff;
+
+        overflow: hidden;
+
+        background: #eee;
+
+        flex-shrink: 0;
+
+        border-radius: 5px;
+
+    }
+
+
+    .photo-preview img {
+
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        display: none;
+
+    }
+
+
+    /* SUBMIT BUTTON */
+
+    button {
+
+        width: 100%;
+
+        height: 42px;
+
+        border: none;
+
+        border-radius: 5px;
+
+        background: #007bff;
+
+        color: white;
+
+        font-size: 15px;
+
+        cursor: pointer;
+
+    }
+
+
+    button:hover {
+
+        background: #0056b3;
+
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 650px) {
+
+        body {
+
+            align-items: flex-start;
+
+            padding: 20px 0;
+
+        }
+
+
+        .container {
+
+            width: 95%;
+
+            padding: 20px;
+
+        }
+
+
+        .form-layout {
+
+            grid-template-columns: 1fr;
+
+        }
+
+
+        .full-width {
+
+            grid-column: 1;
+
+        }
+
+    }
+
+</style>
+
+</head> <body> <div class="container">
+<h2>Registration Form</h2>
+
+
+<form id="myForm">
+
+
+    <div class="form-layout">
+
+
+        <!-- ========================= -->
+        <!-- LEFT SIDE - PERSONAL DATA -->
+        <!-- ========================= -->
+
+
+        <div class="form-group">
+
+            <label for="name">
+                Name
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="country">
+                Country
+            </label>
+
+            <select
+                id="country"
+                onchange="showStates()"
+                required
+            >
+
+                <option value="">
+                    Select Country
+                </option>
+
+                <option value="India">
+                    India
+                </option>
+
+                <option value="USA">
+                    USA
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="state">
+                State
+            </label>
+
+            <select
+                id="state"
+                onchange="showDistricts()"
+                required
+            >
+
+                <option value="">
+                    Select State
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="mobile">
+                Mobile
+            </label>
+
+            <input
+                type="tel"
+                id="mobile"
+                placeholder="Enter mobile number"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="district">
+                District / City
+            </label>
+
+            <select
+                id="district"
+                onchange="updateAddress()"
+                required
+            >
+
+                <option value="">
+                    Select District
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- ADDRESS -->
+        <!-- ========================= -->
+
+
+        <div class="form-group full-width">
+
+            <label for="address">
+                Address
+            </label>
+
+            <input
+                type="text"
+                id="address"
+                placeholder="Address will appear automatically"
+                readonly
+            >
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- IMAGE -->
+        <!-- ========================= -->
+
+
+        <div class="form-group full-width">
+
+            <label for="image">
+                Upload Image
+            </label>
+
+
+            <div class="image-section">
+
+
+                <input
+                    type="file"
+                    id="image"
+                    accept="image/*"
+                    required
+                >
+
+
+                <div class="photo-preview">
+
+                    <img
+                        id="preview"
+                        alt="Image Preview"
+                    >
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- SUBMIT -->
+        <!-- ========================= -->
+
+
+        <div class="full-width">
+
+            <button type="submit">
+                Submit
+            </button>
+
+        </div>
+
+
+    </div>
+
+</form>
+
+</div> <script> /* ========================================== COUNTRY / STATE / DISTRICT DATA ========================================== */ const data = { India: { "Uttar Pradesh": [ "Prayagraj", "Kanpur", "Lucknow", "Agra", "Varanasi", "Jaunpur", "Ayodhya" ], "Maharashtra": [ "Mumbai", "Pune", "Nagpur", "Nashik", "Thane" ], "Rajasthan": [ "Jaipur", "Jodhpur", "Udaipur", "Kota", "Ajmer" ], "Madhya Pradesh": [ "Bhopal", "Indore", "Gwalior", "Jabalpur", "Ujjain" ] }, USA: { "California": [ "Los Angeles", "San Diego", "San Francisco", "Sacramento" ], "Texas": [ "Houston", "Dallas", "Austin", "San Antonio" ], "New York": [ "New York City", "Buffalo", "Rochester", "Albany" ], "Florida": [ "Miami", "Orlando", "Tampa", "Jacksonville" ] } }; /* ========================================== SHOW STATES ========================================== */ function showStates() { const country = document.getElementById("country").value; const state = document.getElementById("state"); const district = document.getElementById("district"); /* Reset State */ state.innerHTML = '<option value="">Select State</option>'; /* Reset District */ district.innerHTML = '<option value="">Select District</option>'; /* Reset Address */ document.getElementById("address").value = ""; if (country !== "") { for (const stateName in data[country]) { const option = document.createElement("option"); option.value = stateName; option.textContent = stateName; state.appendChild(option); } } } /* ========================================== SHOW DISTRICTS ========================================== */ function showDistricts() 
+{ 
+const country = document.getElementById("country").value;
+ const state = document.getElementById("state").value;
+  const district = document.getElementById("district");
+   district.innerHTML = '<option value="">Select District</option>';
+  document.getElementById("address").value = ""; 
+    if ( country !== "" && state !== "" )
+     {
+      const districts = data[country][state];
+       districts.forEach(function(city) 
+       { const option = document.createElement("option");
+        option.value = city; option.textContent = city; 
+        district.appendChild(option);
+         }); 
+         } }
+          
+           function updateAddress()
+            { const country = document.getElementById("country").value; 
+            const state = document.getElementById("state").value;
+             const district = document.getElementById("district").value; 
+             let address = ""; if (country !== "")
+              {
+               address += country; } if (state !== "") 
+              {
+               address += ", " + state; } if (district !== "") 
+              {
+               address += ", " + district;
+               } document.getElementById("address").value = address; } /* ========================================== IMAGE PREVIEW ========================================== */ document .getElementById("image") .addEventListener( "change", function(event) { const file = event.target.files[0]; const preview = document.getElementById("preview"); if (file) { const imageURL = URL.createObjectURL(file); preview.src = imageURL; preview.style.display = "block"; } } ); /* ========================================== FORM SUBMIT ========================================== */ document .getElementById("myForm") .addEventListener( "submit", function(event) { /* Stop normal form submit */ event.preventDefault(); /* ================================== GET FORM VALUES ================================== */ const name = document.getElementById("name").value; const email = document.getElementById("email").value; const mobile = document.getElementById("mobile").value; const country = document.getElementById("country").value; const state = document.getElementById("state").value; const district = document.getElementById("district").value; const address = document.getElementById("address").value; /* ================================== SAVE TEXT DATA ================================== */ localStorage.setItem( "name", name ); localStorage.setItem( "email", email ); localStorage.setItem( "mobile", mobile ); localStorage.setItem( "country", country ); localStorage.setItem( "state", state ); localStorage.setItem( "district", district ); localStorage.setItem( "address", address ); /* ================================== SAVE IMAGE ================================== */ const imageFile = document.getElementById("image").files[0]; if (imageFile) { const reader = new FileReader(); reader.onload = function() { localStorage.setItem( "image", reader.result ); /* Go to second page */ window.location.href = "success.html"; }; reader.readAsDataURL(imageFile); } else { /* If image not selected */ window.location.href = "success.html"; } } ); </script> </body> </html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html> <html lang="en"> <head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Registration Details</title>
+
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    body {
+
+        margin: 0;
+
+        font-family: Arial, sans-serif;
+
+        background: #eef2f7;
+
+        min-height: 100vh;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+    }
+
+
+    .container {
+
+        width: 750px;
+
+        max-width: 95%;
+
+        background: white;
+
+        padding: 30px;
+
+        border-radius: 12px;
+
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+
+    }
+
+
+    h2 {
+
+        text-align: center;
+
+        color: #28a745;
+
+        margin: 0 0 25px 0;
+
+    }
+
+
+    /* USER IMAGE */
+
+    .image-box {
+
+        text-align: center;
+
+        margin-bottom: 25px;
+
+    }
+
+
+    .image-box img {
+
+        width: 120px;
+
+        height: 120px;
+
+        object-fit: cover;
+
+        border: 3px solid #007bff;
+
+        border-radius: 6px;
+
+    }
+
+
+    /* DETAILS */
+
+    .details {
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 15px 20px;
+
+    }
+
+
+    .detail-box {
+
+        border: 1px solid #ddd;
+
+        border-radius: 6px;
+
+        padding: 12px;
+
+        background: #fafafa;
+
+    }
+
+
+    .label {
+
+        font-size: 13px;
+
+        font-weight: bold;
+
+        color: #555;
+
+        margin-bottom: 6px;
+
+    }
+
+
+    .value {
+
+        font-size: 15px;
+
+        color: #222;
+
+        word-break: break-word;
+
+    }
+
+
+    .full-width {
+
+        grid-column: 1 / 3;
+
+    }
+
+
+    /* BACK BUTTON */
+
+    .back-button {
+
+        display: block;
+
+        width: 100%;
+
+        margin-top: 25px;
+
+        padding: 12px;
+
+        background: #007bff;
+
+        color: white;
+
+        text-decoration: none;
+
+        text-align: center;
+
+        border-radius: 5px;
+
+    }
+
+
+    .back-button:hover {
+
+        background: #0056b3;
+
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 650px) {
+
+
+        body {
+
+            align-items: flex-start;
+
+            padding: 20px 0;
+
+        }
+
+
+        .container {
+
+            width: 95%;
+
+            padding: 20px;
+
+        }
+
+
+        .details {
+
+            grid-template-columns: 1fr;
+
+        }
+
+
+        .full-width {
+
+            grid-column: 1;
+
+        }
+
+    }
+
+</style>
+
+</head> <body> <div class="container">
+<h2>
+    Registration Successful
+</h2>
+
+
+<!-- ========================= -->
+<!-- USER IMAGE -->
+<!-- ========================= -->
+
+
+<div class="image-box">
+
+    <img
+        id="userImage"
+        alt="User Image"
+    >
+
+</div>
+
+
+<!-- ========================= -->
+<!-- USER DETAILS -->
+<!-- ========================= -->
+
+
+<div class="details">
+
+
+    <!-- NAME -->
+
+    <div class="detail-box">
+
+        <div class="label">
+            Name
+        </div>
+
+        <div
+            class="value"
+            id="showName"
+        ></div>
+
+    </div>
+
+
+    <!-- EMAIL -->
+
+    <div class="detail-box">
+
+        <div class="label">
+            Email
+        </div>
+
+        <div
+            class="value"
+            id="showEmail"
+        ></div>
+
+    </div>
+
+
+    <!-- MOBILE -->
+
+    <div class="detail-box">
+
+        <div class="label">
+            Mobile
+        </div>
+
+        <div
+            class="value"
+            id="showMobile"
+        ></div>
+
+    </div>
+
+
+    <!-- COUNTRY -->
+
+    <div class="detail-box">
+
+        <div class="label">
+            Country
+        </div>
+
+        <div
+            class="value"
+            id="showCountry"
+        ></div>
+
+    </div>
+
+
+    <!-- STATE -->
+
+    <div class="detail-box">
+
+        <div class="label">
+            State
+        </div>
+
+        <div
+            class="value"
+            id="showState"
+        ></div>
+
+    </div>
+
+
+    <!-- DISTRICT -->
+
+    <div class="detail-box">
+
+        <div class="label">
+            District / City
+        </div>
+
+        <div
+            class="value"
+            id="showDistrict"
+        ></div>
+
+    </div>
+
+
+    <!-- ADDRESS -->
+
+    <div class="detail-box full-width">
+
+        <div class="label">
+            Address
+        </div>
+
+        <div
+            class="value"
+            id="showAddress"
+        ></div>
+
+    </div>
+
+
+</div>
+
+
+<!-- BACK BUTTON -->
+
+<a
+    href="index.html"
+    class="back-button"
+>
+    Back to Registration
+</a>
+
+</div> <script> /* ========================================== GET DATA FROM LOCAL STORAGE ========================================== */ document.getElementById("showName").textContent = localStorage.getItem("name") || ""; document.getElementById("showEmail").textContent = localStorage.getItem("email") || ""; document.getElementById("showMobile").textContent = localStorage.getItem("mobile") || ""; document.getElementById("showCountry").textContent = localStorage.getItem("country") || ""; document.getElementById("showState").textContent = localStorage.getItem("state") || ""; document.getElementById("showDistrict").textContent = localStorage.getItem("district") || ""; document.getElementById("showAddress").textContent = localStorage.getItem("address") || ""; /* ========================================== SHOW USER IMAGE ========================================== */ const savedImage = localStorage.getItem("image"); if (savedImage) { document.getElementById("userImage").src = savedImage; } else { document.getElementById("userImage").style.display = "none"; } </script> </body> </html>
